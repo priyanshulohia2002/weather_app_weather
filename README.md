@@ -3,10 +3,10 @@
 A new Flutter project.
 ##
 how to run the project
-step 1. download the source code from github
-step 2. open the folder in VS code after de compressing it
-step 3 in the terminal run - 'flutter pub get'
-step 4 then to finally run write - 'flutter run' in terminal
+Step 1. download the source code from github     
+Step 2. open the folder in VS code after de compressing it       
+Step 3. in the terminal run - 'flutter pub get' to download all dependencies    
+Step 4 then to finally run write - 'flutter run' in terminal       
 ### Getting Started
 
 This project is a starting point for a Flutter application.
