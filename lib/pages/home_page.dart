@@ -16,11 +16,20 @@ class _HomePageState extends State<HomePage> {
   //stores response of the query like temp,wind snow
   Weather? _weather;
   final _controller = TextEditingController();
+  String ccity="Australia";
+  // String? ccity;
+  String cc = "";
+  // if(ccity == null) {
+  //     cc="Australia";
+  // }
+  // else{
+  //   cc = ccity;
+  // }
 
   @override
   void initState() {
     super.initState();
-    _wf.currentWeatherByCityName("London").then((w) {
+    _wf.currentWeatherByCityName(ccity).then((w) {
       setState(() {
         _weather = w;
       });
@@ -36,7 +45,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildUI() {
-    if (_weather == null) {//show loading sign in case of no value
+    if (_weather == null) {
+      //show loading sign in case of no value
       return const Center(
         child: CircularProgressIndicator(),
       );
@@ -88,7 +98,10 @@ class _HomePageState extends State<HomePage> {
                   icon: const Icon(Icons.clear),
                 ),
                 prefixIcon: IconButton(
-                  onPressed: () async {},
+                  onPressed: () {
+                    ccity = _controller.text;
+                    setState(() {});
+                  },
                   icon: const Icon(Icons.search, color: Colors.blue),
                   // static const IconData send = IconData(0xe571, fontFamily: 'MaterialIcons', matchTextDirection: true),
                 ),
@@ -142,7 +155,7 @@ class _HomePageState extends State<HomePage> {
             Text(
               "  ${DateFormat("d.m.y").format(now)}",
               style: const TextStyle(
-                fontWeight: FontWeight.w400,//boldness
+                fontWeight: FontWeight.w400, //boldness
               ),
             ),
           ],
@@ -172,19 +185,25 @@ class _HomePageState extends State<HomePage> {
   Widget _currentTemp() {
     return Text(
       "${_weather?.temperature?.celsius?.toStringAsFixed(0)}° C",
-      style: const TextStyle(color: Colors.black,fontSize: 90,fontWeight: FontWeight.w500,
+      style: const TextStyle(
+        color: Colors.black,
+        fontSize: 90,
+        fontWeight: FontWeight.w500,
       ),
     );
   }
+
   Widget _extraInfo() {
     return Container(
-      width: MediaQuery.sizeOf(context).width*1.00,
-      height: MediaQuery.sizeOf(context).height*0.07,
-      decoration: BoxDecoration(
-        color: Colors.blueGrey,
-        borderRadius: BorderRadius.circular(20),
+        width: MediaQuery.sizeOf(context).width * 1.00,
+        height: MediaQuery.sizeOf(context).height * 0.07,
+        decoration: BoxDecoration(
+          color: Colors.blueGrey,
+          borderRadius: BorderRadius.circular(20),
         ),
-        padding: const EdgeInsets.all(8.0,),
+        padding: const EdgeInsets.all(
+          8.0,
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -202,8 +221,6 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ],
-        )   
-      
-    );
+        ));
   }
 }
